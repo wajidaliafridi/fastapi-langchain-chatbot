@@ -8,7 +8,7 @@ Scripts/
 __pycache__/
 *.pyc
 
-# Env files
+# Environment variables
 .env
 
 # OS
