@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/chat.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+    <title>Chat_App</title>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">Chat_APP</div>
+
+        <div class="show-error"></div>
+        <div class="chat-messages"></div>
+
+        <div class="chat-input">
+            <input type="text" name="message" id="message" placeholder="Type a message...">
+            <button id="submitBtn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                var message = $("#message").val().trim();
+
+                if (message === "") {
+                    $(".show-error").text("Message can't be empty");
+                    return;
+                }                
+                $('.show-error').text('');    
+                $(".chat-messages").append(`
+                    <div class="message user-message">
+                        <span class="sender">You:</span>
+                        <span class="text">${message}</span>
+                    </div>
+                `);
+
+                $("#message").val("");
+                
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/chat",
+                    contentType: "application/json",
+                    data: JSON.stringify({ message: message}),
+                    dataType: "json",
+
+                    success: function (response) {
+$(".chat-messages").append(`
+                <div class="message bot-message">
+                    <span class="sender">Bot:</span>
+                    <span class="text">${response.response}</span>
+                </div>
+            `);
+
+            $(".chat-messages").scrollTop(
+                $(".chat-messages")[0].scrollHeight
+                );
+            }
+        });
+    });
+});
+    </script>
+
+</body>
+</html>

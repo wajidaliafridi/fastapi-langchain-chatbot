@@ -1,0 +1,15 @@
+# Virtual environment
+myenv/
+Include/
+Lib/
+Scripts/
+
+# Python
+__pycache__/
+*.pyc
+
+# Env files
+.env
+
+# OS
+.DS_Store

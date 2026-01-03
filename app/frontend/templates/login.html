@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <title>login-form</title>
+</head>
+<body>
+   
+
+    <div class="wrapper">
+        <div class="container">
+            <h1>Welcome</h1>
+             <center> {% if error %}
+            <p style="color:red; font-size:26px; font-weight:bold;">{{ error }}</p>
+            {% endif %}</center>
+            <form action="/login" method="post" class="form">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit" id="login-button">Login</button>
+            </form>
+        </div>
+
+        <ul class="bg-bubbles">
+            <li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+
+        </ul>
+       
+    </div>
+</body>
+</html>
